@@ -33,24 +33,10 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-
-
 app.use('/menu', menu);
 app.use('/auth',auth);
-
-
-mongodb.connect(url,function(err){
-    if(err){
-        console.log("failed connecting to db: " + url);
-        process.exit(1);
-    }else{
-        //app = express.createServer();
-        /*https.createServer(options,app).listen(app.get('port'), function () {
-            console.log('Express server listening on port ' + app.get('port'));*/
-        app.listen(app.get('port'), function() {
-            console.log('%s: Node server started on %d ...',
-                        Date(Date.now() ), app.get('port'));
-        });
-    }
+app.listen(app.get('port'), function() {
+    console.log('%s: Node server started on %d ...',
+                            Date(Date.now() ), app.get('port'));   
 })
 

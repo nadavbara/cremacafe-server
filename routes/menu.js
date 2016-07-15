@@ -2,7 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var dbConnection = require('../dbConnections/mongoDbconnection');
+var url = 'mongodb://baza:bgu4life@ds011715.mlab.com:11715/crema_test_db';
 
+router.use(function(req,res,next){
+    dbConnection.connect(url,next);
+})
 
 router.get('/categories', function (req, res) {
     var db = dbConnection.get();
@@ -10,7 +14,14 @@ router.get('/categories', function (req, res) {
     collection.find().toArray(function (err, docs) {
         res.send(docs);
     })
+    dbConnection.close(function(err){
+        if(err){
+            console.log('error occourd connectiong to db');
+        }
+    });
+    
 });
+
 /*
 router.get('/categories/:category_id', function (req, res) {
     var db = dbConnection.get();
