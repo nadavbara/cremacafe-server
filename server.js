@@ -15,16 +15,8 @@ var options = {
   cert: fs.readFileSync('./ssl/cert.pem')
 };
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-if (typeof ipaddress === "undefined") {
-            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-            //  allows us to run/test the app locally.
-            console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-            this.ipaddress = "127.0.0.1";
-};
-
+//var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+app.set('port', (process.env.PORT || 5000));
 
 //var url = 'mongodb://localhost:27017/crema_test_db';
 var url = 'mongodb://baza:bgu4life@ds011715.mlab.com:11715/crema_test_db';
@@ -55,9 +47,9 @@ mongodb.connect(url,function(err){
         //app = express.createServer();
         /*https.createServer(options,app).listen(app.get('port'), function () {
             console.log('Express server listening on port ' + app.get('port'));*/
-        app.listen(port, ipaddress, function() {
-            console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), ipaddress, port);
+        app.listen(app.get('port'), function() {
+            console.log('%s: Node server started on %d ...',
+                        Date(Date.now() ), port);
         });
     }
 })
