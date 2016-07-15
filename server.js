@@ -49,7 +49,7 @@ mongodb.connect(url,function(err){
             console.log('Express server listening on port ' + app.get('port'));*/
         app.listen(app.get('port'), function() {
             console.log('%s: Node server started on %d ...',
-                        Date(Date.now() ), port);
+                        Date(Date.now() ), app.get('port'));
         });
     }
 })
