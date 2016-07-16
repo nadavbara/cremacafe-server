@@ -6,6 +6,7 @@ var express = require('express'),
     methodOverride  = require('method-override'),
     menu        = require('./routes/menu'),
     auth        = require('./routes/auth'),
+    orders        = require('./routes/orders'),
     mongoose        = require('mongoose'),
     mongodb         = require('./dbConnections/mongoDbconnection')
     app = express();
@@ -15,7 +16,6 @@ var options = {
   cert: fs.readFileSync('./ssl/cert.pem')
 };
 
-//var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 app.set('port', (process.env.PORT || 5000));
 
 //var url = 'mongodb://localhost:27017/crema_test_db';
@@ -35,6 +35,7 @@ app.all('*', function(req, res, next) {
 
 app.use('/menu', menu);
 app.use('/auth',auth);
+app.use('/orders',orders);
 app.listen(app.get('port'), function() {
     console.log('%s: Node server started on %d ...',
                             Date(Date.now() ), app.get('port'));   
