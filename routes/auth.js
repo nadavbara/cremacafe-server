@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/',function(req,res){
-	console.log('here');
-	res.send('login successfully');
+router.get('/',	passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
+  function(req, res) {
+    if (!req.user) {
+      throw new Error('user null');
+    }
+    res.send(req.user);
 })
 
 module.exports = router;

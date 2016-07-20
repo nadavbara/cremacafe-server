@@ -8,7 +8,11 @@ var express = require('express'),
     auth        = require('./routes/auth'),
     orders        = require('./routes/orders'),
     mongoose        = require('mongoose'),
-    mongodb         = require('./dbConnections/mongoDbconnection')
+    mongodb         = require('./dbConnections/mongoDbconnection'),
+    passport = require('passport'),
+    strategy = require('./setup-passport'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
     app = express();
 
 var options = {
@@ -33,9 +37,18 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+app.use(cookieParser());
+// See express session docs for information on the options: https://github.com/expressjs/session
+app.use(session({ secret: 'oijBHgmDtIME_UNusj0J_R9Tj1H_qXwKGtBG_EyO0JSU5xkjsN6WJMauBnTWForm', resave: false,  saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/menu', menu);
 app.use('/auth',auth);
 app.use('/orders',orders);
+
+
+
 app.listen(app.get('port'), function() {
     console.log('%s: Node server started on %d ...',
                             Date(Date.now() ), app.get('port'));   
