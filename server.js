@@ -1,6 +1,6 @@
 var express = require('express'),
-    https = require('https');
-    fs = require('fs');
+    https = require('https'),
+    fs = require('fs'),
 	morgan = require('morgan'),
     bodyParser      = require('body-parser'),
     methodOverride  = require('method-override'),
@@ -10,7 +10,7 @@ var express = require('express'),
     mongoose        = require('mongoose'),
     mongodb         = require('./dbConnections/mongoDbconnection'),
     passport = require('passport'),
-    strategy = require('./setup-passport'),
+    strategy = require('./passport/setup-passport'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     app = express();
