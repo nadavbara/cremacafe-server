@@ -7,6 +7,7 @@ var express = require('express'),
     menu        = require('./routes/menu'),
     auth        = require('./routes/auth'),
     orders        = require('./routes/orders'),
+    user        = require('./routes/user'),
     mongoose        = require('mongoose'),
     mongodb         = require('./dbConnections/mongoDbconnection'),
     passport = require('passport'),
@@ -46,6 +47,7 @@ app.use(passport.session());
 app.use('/menu', menu);
 app.use('/auth',auth);
 app.use('/orders',orders);
+app.use('/user',user);
 
 
 

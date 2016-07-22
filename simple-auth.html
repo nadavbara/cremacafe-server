@@ -1,0 +1,38 @@
+<script src="https://cdn.auth0.com/w2/auth0-6.7.min.js"></script>
+<script type="text/javascript">
+  'use strict';
+  const auth0 = new Auth0({
+    clientID: 'EgY7ZjhvdKrGc3r7X5k6DSXwZpczJIKL',
+    domain: 'cremacafe.auth0.com',
+    callbackURL: 'http://localhost:5000/auth'
+  });
+  
+  function sendSMS(){
+  	var phoneNumber = document.getElementById('phone').value;
+  	auth0.requestSMSCode({ phoneNumber:phoneNumber}, function(err) {
+    if (err) {
+      alert('error sending SMS: '+ err.error_description);
+      return;
+    }
+    // the request was successful and you should
+    // receive the passcode to the specified phone
+    
+  });
+}
+
+function login(){
+  var phone = '+972508812305';
+  var code = document.getElementById('code').value;
+    //submit the passcode to authenticate the phone
+  auth0.verifySMSCode({ phoneNumber: phone, code: code }, function(err){
+    alert('code verification failed. ' + err.statusCode + ' '+ err.error);
+  });
+};
+
+
+</script>
+
+<input type="text" id="phone"></input>
+<button onclick="window.sendSMS()">click me</button>
+<input type="text" id="code"></input>
+<button onclick="window.login">now login</button>
