@@ -7,7 +7,7 @@ mongoose.connect(url);
 var orderSchema = new Schema({
   userName: String,
   phoneNumber: String,
-  orderProducts: [String],
+  orderProducts: [Object],
   orderNotes: String,
   timeForPickup: Number,
   totalAmount: Number,
