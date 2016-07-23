@@ -9,5 +9,6 @@ router.get('/',	passport.authenticate('auth0', { failureRedirect: '/' }), requir
       throw new Error('user null');
     }
     res.send(req.user);
+});
 
 module.exports = router;
