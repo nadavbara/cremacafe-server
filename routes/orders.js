@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Order = require('../models/order');
+var jwtCheck = require('../jwt/validateJWT');
 
-router.post('/',function(req,res){
+router.post('/',jwtCheck,function(req,res){
 
 	var userName = req.body.userName,
 	phoneNumber =  req.body.phoneNumber,
