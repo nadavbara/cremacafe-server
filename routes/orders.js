@@ -10,7 +10,10 @@ router.post('/',jwtCheck,function(req,res){
 	orderProducts =  req.body.orderProducts,
 	orderNotes =  req.body.orderNotes,
 	timeForPickup =  req.body.timeForPickup,
-	totalAmount =  req.body.totalAmount;
+	totalAmount =  req.body.totalAmount,
+	orderTime = req.body.orderTime,
+	orderDate = req.body.orderDate;
+
 
 	var order = new Order({
 		userName : userName,
@@ -18,7 +21,9 @@ router.post('/',jwtCheck,function(req,res){
 		orderProducts : orderProducts,
 		orderNotes : orderNotes,
 		timeForPickup : timeForPickup,
-		totalAmount : totalAmount
+		totalAmount : totalAmount,
+		orderTime : orderTime,
+		orderDate : orderDate
 	});
 
 

@@ -11,6 +11,8 @@ var orderSchema = new Schema({
   orderNotes: String,
   timeForPickup: Number,
   totalAmount: Number,
+  orderDate: String,
+  orderTime: String
 });
 
 var Order = mongoose.model('Order', orderSchema);
