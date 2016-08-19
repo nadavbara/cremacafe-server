@@ -1,27 +1,22 @@
 var express = require('express');
 var router = express.Router();
-var Order = require('../models/order').Order;
 var NewOrder = require('../models/order').NewOrder;
-var jwtCheck = require('../jwt/validateJWT');
 
-router.post('/',/*jwtCheck,*/function(req,res){
-
-	var order = new Order(req.body);
-
-	var newOrder = new NewOrder(req.body);
-
-	newOrder.save(function(err){
-		if(err) console.log(err);
-	})
-
-	order.save(function(err){
+router.get('/orders/new',function(req,res){
+	NewOrder.find({}, function(err,order){
 		if(err) console.log(err);
 		res.send(order);
-	});
-	
-});
+	})
+})
 
-router.get('/:userName',function(req,res){
+router.get('/orders/:orderid',function(req,res){
+	NewOrder.findById(req.params.orderid, function(err,order){
+		if(err) console.log(err);
+		res.send(order);	
+	})
+})
+
+router.get('/orders/ready',function(req,res){
 	var userName = req.params.userName;
 	Order.find({userName : userName}, function(err,order){
 		if(err) console.log(err);
@@ -30,4 +25,3 @@ router.get('/:userName',function(req,res){
 })
 
 module.exports = router;
-
