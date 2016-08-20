@@ -9,7 +9,7 @@ var orderSchema = new Schema({
   phoneNumber: String,
   orderProducts: { type : Array , "default" : [] },
   orderNotes: String,
-  timeForPickup: Number,
+  timeForPickup: String,
   totalAmount: Number,
   orderDate: String,
   orderTime: String

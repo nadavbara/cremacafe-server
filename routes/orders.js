@@ -6,6 +6,8 @@ var jwtCheck = require('../jwt/validateJWT');
 
 router.post('/',/*jwtCheck,*/function(req,res){
 
+	req.body.timeForPickup = calculatePickupTime(req.body.timeForPickup);
+
 	var order = new Order(req.body);
 
 	var newOrder = new NewOrder(req.body);
@@ -28,6 +30,15 @@ router.get('/:userName',function(req,res){
 		res.send(order);
 	})
 })
+
+
+calculatePickupTime = function(timeForPickup){	
+		const now = new Date();
+		now.setMinutes(now.getMinutes() + timeForPickup);
+		const minutes = now.getMinutes();
+		const hours = now.getHours();
+		return absoluteTimeForPickup = hours + ':' + minutes;
+	}
 
 module.exports = router;
 
