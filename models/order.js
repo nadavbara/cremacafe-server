@@ -17,5 +17,6 @@ var orderSchema = new Schema({
 
 var Order = mongoose.model('Order', orderSchema);
 var NewOrder = mongoose.model('newOrder', orderSchema);
+var ReadyOrder = mongoose.model('readyOrders', orderSchema);
 
-module.exports = {Order:Order,NewOrder:NewOrder};
+module.exports = {Order:Order,NewOrder:NewOrder,ReadyOrder:ReadyOrder};

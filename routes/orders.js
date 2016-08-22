@@ -35,8 +35,8 @@ router.get('/:userName',function(req,res){
 calculatePickupTime = function(timeForPickup){	
 		const now = new Date();
 		now.setMinutes(now.getMinutes() + timeForPickup);
-		const minutes = now.getMinutes();
-		const hours = now.getHours();
+		const minutes = (now.getMinutes()<10?'0':'') + now.getMinutes();
+		const hours = ("0" + now.getHours()).slice(-2);
 		return absoluteTimeForPickup = hours + ':' + minutes;
 	}
 
