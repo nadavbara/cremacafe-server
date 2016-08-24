@@ -41,6 +41,11 @@ router.get('/categories/:category_name', function (req, res) {
     var category = collection.findOne({categoryName:name}, function (err, category) {
         res.send(category);
     })
+    dbConnection.close(function(err){
+        if(err){
+            console.log('error occourd connectiong to db');
+        }
+    });
 
 })
 
@@ -51,6 +56,11 @@ router.get('/categories/:category_id/products', function (req, res) {
     var category = collection.find({category_id:mongo_id}).toArray(function (err, category) {
         res.send(category);
     })
+    dbConnection.close(function(err){
+        if(err){
+            console.log('error occourd connectiong to db');
+        }
+    });
 
 })
 
@@ -60,6 +70,11 @@ router.get('/products', function (req, res) {
     collection.find().toArray(function (err, docs) {
         res.send(docs);
     })
+    dbConnection.close(function(err){
+        if(err){
+            console.log('error occourd connectiong to db');
+        }
+    });
 });
 
 router.get('/products/:product_name', function (req, res) {
@@ -69,6 +84,11 @@ router.get('/products/:product_name', function (req, res) {
     var category = collection.findOne({productName:product_name}, function (err, products) {
         res.send(products);
     })
+    dbConnection.close(function(err){
+        if(err){
+            console.log('error occourd connectiong to db');
+        }
+    });
 });
 
 
