@@ -6,7 +6,7 @@ var NewOrder = require('../models/order').NewOrder;
 var ReadyOrder = require('../models/order').ReadyOrder;
 
 router.get('/new',function(req,res){
-	NewOrder.find({},function(err,orders){
+	NewOrder.find({}).sort({date: -1}).exec(function(err,orders){
 		var ordersIDs = orders.map(function(order){
 			return order._id;
 		})
@@ -15,7 +15,7 @@ router.get('/new',function(req,res){
 })
 
 router.get('/ready',function(req,res){
-	ReadyOrder.find({},function(err,orders){
+	ReadyOrder.find({}).sort({date: -1}).exec(function(err,orders){
 		var ordersIDs = orders.map(function(order){
 			return order._id;
 		})
