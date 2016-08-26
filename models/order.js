@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var url = require('../dbConnections/config');
+var url = require('../dbConnections/config').url;
 
 mongoose.connect(url);
 

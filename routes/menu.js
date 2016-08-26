@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongo = require('mongodb');
 var dbConnection = require('../dbConnections/mongoDbconnection');
-var url = require('../dbConnections/config');
+var url = require('../dbConnections/config').url;
 
 router.use(function(req,res,next){
     dbConnection.connect(url,next);

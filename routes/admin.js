@@ -1,9 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var twilio = require('twilio');
-var client = twilio('AC8da339595d406da3563966808fb98085', '87386ced0c4b111b6731ee988f39997c');
+var twilioAPI = require('../dbConnections/config').twilio;
+var client = twilio(twilioAPI.key, twilioAPI.secret);
+var admin_pass = require('../dbConnections/config').admin_pass;
 var NewOrder = require('../models/order').NewOrder;
 var ReadyOrder = require('../models/order').ReadyOrder;
+
+router.use(function(req,res,next){
+	var header = req.get('X-Authoriztion-Admin');
+	if(admin_pass != header){
+		res.status(401).send("Unauthorized!");
+	}
+    else{
+    	next();
+    }
+})
 
 router.get('/new',function(req,res){
 	NewOrder.find({}).sort({date: -1}).exec(function(err,orders){
@@ -42,11 +54,11 @@ router.get('/orders/new/:orderid',function(req,res){
 	NewOrder.findByIdAndRemove(req.params.orderid, function(err,order){
 		if(err){console.log(err)}
 		else{
-			/*client.sendMessage({
+			client.sendMessage({
 				to: order.phoneNumber,
 				from: '+1 315-836-4481 ',
 				body: 'ההזמנה שלך מוכנה בקרמה קפה! תשלום בקופה: ' + order.totalAmount,
-			})*/
+			})
 			var readyOrder = new ReadyOrder({
 				userName: order.userName,
 				phoneNumber: order.phoneNumber,

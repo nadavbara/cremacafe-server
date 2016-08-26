@@ -4,7 +4,7 @@ var Order = require('../models/order').Order;
 var NewOrder = require('../models/order').NewOrder;
 var jwtCheck = require('../jwt/validateJWT');
 
-router.post('/',/*jwtCheck,*/function(req,res){
+router.post('/',jwtCheck,function(req,res){
 
 	req.body.timeForPickup = calculatePickupTime(req.body.timeForPickup);
 
