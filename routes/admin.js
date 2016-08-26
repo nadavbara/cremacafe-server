@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var twilio = require('twilio');
+var twilio = require('twilio')();
 var twilioAPI = require('../dbConnections/config').twilio;
-var client = twilio(twilioAPI.key, twilioAPI.secret);
 var admin_pass = require('../dbConnections/config').admin_pass;
 var NewOrder = require('../models/order').NewOrder;
 var ReadyOrder = require('../models/order').ReadyOrder;
