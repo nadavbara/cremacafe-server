@@ -53,7 +53,7 @@ router.get('/orders/new/:orderid',function(req,res){
 	NewOrder.findByIdAndRemove(req.params.orderid, function(err,order){
 		if(err){console.log(err)}
 		else{
-			client.sendMessage({
+			twilio.sendMessage({
 				to: order.phoneNumber,
 				from: '+1 315-836-4481 ',
 				body: 'ההזמנה שלך מוכנה בקרמה קפה! תשלום בקופה: ' + order.totalAmount,
