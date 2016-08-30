@@ -17,7 +17,7 @@ router.use(function(req,res,next){
 })
 
 router.get('/new',function(req,res){
-	NewOrder.find({}).sort({timeForPickup: -1}).exec(function(err,orders){
+	NewOrder.find({}).sort({timeForPickup: 1}).exec(function(err,orders){
 		var ordersIDs = orders.map(function(order){
 			return order._id;
 		})
@@ -26,7 +26,7 @@ router.get('/new',function(req,res){
 })
 
 router.get('/ready',function(req,res){
-	ReadyOrder.find({}).sort({timeForPickup: -1}).exec(function(err,orders){
+	ReadyOrder.find({}).sort({timeForPickup: 1}).exec(function(err,orders){
 		var ordersIDs = orders.map(function(order){
 			return order._id;
 		})
