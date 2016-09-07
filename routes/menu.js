@@ -11,7 +11,7 @@ router.use(function(req,res,next){
 router.get('/categories', function (req, res) {
     var db = dbConnection.get();
     var collection = db.collection('categories');
-    collection.find().toArray(function (err, docs) {
+    collection.find().sort({categoryPriority:1}).toArray(function (err, docs) {
         res.send(docs);
     })
     dbConnection.close(function(err){
