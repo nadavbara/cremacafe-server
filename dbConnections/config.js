@@ -1,7 +1,7 @@
 
 var mlab_key = process.env.MLAB_KEY;
 var mlab_pass = process.env.MLAB_PASSWORD;
-var admin_pass = process.env.ADMIN_PASS
+var admin_pass = process.env.ADMIN_PASS;
 var twilio = {
 	key: process.env.TWILIO_ACCOUNT_SID,
 	secret: process.env.TWILIO_AUTH_TOKEN
