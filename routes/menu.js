@@ -22,17 +22,12 @@ router.get('/categories', function (req, res) {
     
 });
 
-/*
-router.get('/categories/:category_id', function (req, res) {
-    var db = dbConnection.get();
-    var collection = db.collection('categories');
-    var id = req.params.category_id;
-    var mongo_id = new mongo.ObjectID(id);
-    var category = collection.findOne({_id:mongo_id}, function (err, category) {
-        res.send(category);
-    })
 
-})*/
+router.get('/logtesting', function (req, res) {
+    console.log("this is an heroku testing logs");
+    res.send("ok");
+
+})
 
 router.get('/categories/:category_name', function (req, res) {
     var db = dbConnection.get();
