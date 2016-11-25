@@ -86,8 +86,12 @@ router.get('/orders/new/:orderid',function(req,res){
 				orderTime: order.orderTime,
 			});
 			readyOrder.save(function(err){
-				if(err) {console.log(err);}
+				if(err) {
+					console.log(err);
+					res.sendStatus(500);
+				}
 			});
+			console.log("an order has been moved to ready state" + order)
 			res.send("success");
 		}
 		else{
@@ -110,10 +114,13 @@ router.get('/orders/untaken/:orderid',function(req,res){
 				orderDate: order.orderDate,
 				orderTime: order.orderTime,
 			});
-			console.log('here 2');
 			untakenOrder.save(function(err){
-				if(err) {console.log(err);}
+				if(err) {
+					console.log(err);
+					res.sendStatus(500);
+				}
 			});
+			console.log("an order has been moved to untaken state" + order)
 			res.send("success");
 		}
 		else{
@@ -131,8 +138,12 @@ router.get('/orders/untaken/:orderid',function(req,res){
 						orderTime: order.orderTime,
 					});
 					untakenOrder.save(function(err){
-						if(err) {console.log(err);}
+						if(err) {
+							console.log(err);
+							res.sendStatus(500);
+						}
 					});
+					console.log("an order has been moved to untaken state" + order)
 					res.send("success");
 				}else{
 					res.send("no such order");
@@ -145,8 +156,12 @@ router.get('/orders/untaken/:orderid',function(req,res){
 router.get('/orders/ready/:orderid',function(req,res){
 
 	ReadyOrder.findByIdAndRemove(req.params.orderid, function(err,order){
-		if(err){console.log(err)}
+		if(err){
+			console.log(err)
+			res.sendStatus(500);
+		}
 		else{
+			console.log("an order has been taken" + order);
 			res.send("success");
 		}
 	});

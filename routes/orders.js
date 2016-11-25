@@ -17,8 +17,14 @@ router.post('/',jwtCheck,function(req,res){
 	})
 
 	order.save(function(err){
-		if(err) console.log(err);
-		res.send(order);
+		if(err) {
+			console.log(err);
+			res.sendStatus(500);
+		}
+		else{
+			console.log("new order has been added" + order);
+			res.send(order);
+		}
 	});
 	
 });
@@ -26,8 +32,13 @@ router.post('/',jwtCheck,function(req,res){
 router.get('/:userName',function(req,res){
 	var userName = req.params.userName;
 	Order.find({userName : userName}, function(err,order){
-		if(err) console.log(err);
-		res.send(order);
+		if(err) {
+			console.log(err);
+			res.status(500);
+		}
+		else{
+			res.send(order);
+		}
 	})
 })
 

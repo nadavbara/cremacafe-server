@@ -22,13 +22,6 @@ router.get('/categories', function (req, res) {
     
 });
 
-
-router.get('/logtesting', function (req, res) {
-    console.log("this is an heroku testing logs");
-    res.send("ok");
-
-})
-
 router.get('/categories/:category_name', function (req, res) {
     var db = dbConnection.get();
     var collection = db.collection('categories');
